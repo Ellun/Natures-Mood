@@ -8,6 +8,7 @@ Check daily weather based on location
 * PG-Promise
 * AJAX
 * CSS/HTML
+* babel
 
 ### API Data
 Open Weather Map - <http://openweathermap.org>
