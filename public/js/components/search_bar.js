@@ -16,7 +16,6 @@ export default class SearchBar extends Component {
         placeholder="zipcode"
         value={this.state.location}
         onChange={event => this.onInputchange(event.target.value)}/>
-        <button type="submit">Search</button>
       </form>
     );
   }

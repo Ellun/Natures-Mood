@@ -2,14 +2,19 @@ import $ from 'jquery';
 import React, {Component} from 'react';
 import {browserHistory, Link} from 'react-router';
 import SearchBar from './search_bar';
+import WeatherList from './weather_list';
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      weather: {}
+      weather: ''
     }
+  }
+
+  handleData(data) {
+    this.setState({weather: data});
   }
 
   render() {
@@ -17,11 +22,10 @@ export default class Home extends Component {
       browserHistory.push('/login');
     }
     return (
-      <SearchBar passData={this.handleData}/>
+      <div>
+        <SearchBar passData={this.handleData.bind(this)}/>
+        <WeatherList weather={this.state.weather}/>
+      </div>
     )
-  }
-
-  handleData(data) {
-    console.log(data);
   }
 }
