@@ -11,9 +11,9 @@ Check daily weather based on location
 * babel
 
 ### API Data
-Open Weather Map - <http://openweathermap.org>
+wunderground - <https://www.wunderground.com>
 
-OWM allows for multiple search parameters as well as provides JSON and XML
+wunderground allows for multiple search parameters as well as provides JSON and XML
 formatting.
 
 ### User Stories

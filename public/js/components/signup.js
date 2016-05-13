@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import React, {Component} from 'react';
-import {Link} from 'react-router';
+import {browserHistory, Link} from 'react-router';
 
 export default class Signup extends Component {
   constructor(props) {
@@ -15,22 +15,29 @@ export default class Signup extends Component {
   }
 
   render() {
+    if (localStorage.token) {
+      browserHistory.push('/home');
+    }
     return (
       <form className="signup-form" onSubmit={this.handleSubmit.bind(this)}>
+        <h1>Sunny Day</h1>
         <input
           value={this.state.username}
           onChange={event => this.onUsernameChange(event.target.value)}
           placeholder="username" />
+          <br />
         <input
           value={this.state.password}
           onChange={event => this.onPasswordChange(event.target.value)}
           type="password"
           placeholder="password" />
+          <br />
         <input
           value={this.state.confirmPassword}
           onChange={event => this.onConfirmPasswordChange(event.target.value)}
           type="password"
           placeholder="confirm password" />
+          <br />
         <button type="submit">Submit</button>
         <h5>{this.state.error}</h5>
         <h4>Already have an account?</h4>
@@ -74,6 +81,7 @@ export default class Signup extends Component {
           })
           .done((data) => {
             localStorage.token = data.token;
+            browserHistory.push('/home');
           })
         }
       })

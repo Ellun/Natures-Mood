@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import React, {Component} from 'react';
-import {Link} from 'react-router';
+import {browserHistory, Link} from 'react-router';
 
 export default class Login extends Component {
   constructor(props) {
@@ -14,17 +14,23 @@ export default class Login extends Component {
   }
 
   render() {
+    if (localStorage.token) {
+      browserHistory.push('/home');
+    }
     return (
       <form className="login-form" onSubmit={this.handleSubmit.bind(this)}>
+        <h1>Sunny Day</h1>
         <input
           value={this.state.username}
           onChange={event => this.onUsernameChange(event.target.value)}
           placeholder="username" />
+          <br />
         <input
           value={this.state.password}
           onChange={event => this.onPasswordChange(event.target.value)}
           type="password"
           placeholder="password" />
+          <br />
         <button type="submit">Submit</button>
         <h5>{this.state.error}</h5>
         <h4>Need an account?</h4>
@@ -47,7 +53,7 @@ export default class Login extends Component {
     if (this.state.username == '' || this.state.password == '') { // checks for real username/password
       this.setState({error:error})
     }
-    $.post('/users/login',{ // AJAX post request to users/login route
+    $.post('/users/login', { // AJAX post request to users/login route
       username: this.state.username,
       password: this.state.password
     })
@@ -56,7 +62,12 @@ export default class Login extends Component {
         this.setState({error:error})
       } else { // if login is successful
         localStorage.token = data.token;
+        browserHistory.push('/home');
       }
     })
   }
+}
+
+Login.contextTypes = {
+  router: React.PropTypes.object
 }

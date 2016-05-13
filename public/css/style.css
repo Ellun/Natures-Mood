@@ -1,0 +1,46 @@
+* {
+  font-family: georgia;
+  border: none;
+  color: #404040;
+}
+
+.search-bar {
+  margin: 20px;
+  text-align: center;
+}
+
+.search-bar input {
+  width: 75%;
+  border: 1px solid #404040;
+  border-radius: 5px;
+}
+
+.login-form, .signup-form {
+  text-align: center;
+  border: 1px solid #404040;
+  border-radius: 5px;
+  width: 50%;
+  margin: 20% auto;
+}
+
+.login-form input, .signup-form input {
+  width: 50%;
+  margin-top: 5%;
+  border: 1px solid #404040;
+  border-radius: 5px;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background-color: inherit;
+  border: 1px solid #404040s;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #404040;
+  color: white;
+}
