@@ -11,19 +11,27 @@ export default class SearchBar extends Component {
 
   render() {
     return (
-      <div className="search-bar">
+      <form className="search-bar" onSubmit={this.handleSubmit.bind(this)}>
         <input
         placeholder="zipcode"
         value={this.state.location}
         onChange={event => this.onInputchange(event.target.value)}/>
-      </div>
+        <button type="submit">Search</button>
+      </form>
     );
   }
 
   onInputchange(location) {
     this.setState({location});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
     $.get('/weather', {
       location: this.state.location
+    })
+    .done((data) => {
+      this.props.passData(data);
     })
   }
 }
