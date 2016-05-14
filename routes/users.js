@@ -18,20 +18,12 @@ users.post('/login', db.loginUser, ( req, res ) => {
   res.json( { agent: res.rows, token: token } );
 });
 
-users.delete( '/delete', expressJWT( { secret:SECRET } ), db.deleteUser, ( req,res ) => {
-  res.send( 'deads' );
-});
-
-users.put( '/update', expressJWT( { secret:SECRET } ), db.updatePassword, ( req,res ) => {
-  res.json(res.rows)
-});
-
 users.route('/signup')
   .get((req,res) => {res.json({data:'success'});})
   .post(db.createUser,(req, res) => {
     var token = jwt.sign( res.rows, SECRET );
     res.json( { agent: res.rows, token: token } );
-  });
+});
 
 
 module.exports = users;

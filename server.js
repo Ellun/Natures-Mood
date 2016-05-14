@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 app.use('/users', userRoutes);
-app.use('/weather', weatherRoutes );
+app.use('/weather', expressJWT({secret:SECRET}), weatherRoutes );
 
 app.get( '*', ( req,res ) => {
   res.sendFile( path.join( __dirname,'public/index.html') )

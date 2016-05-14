@@ -4,6 +4,22 @@
   color: #404040;
 }
 
+.search-location {
+  width: 75%;
+  border: 1px solid #404040;
+  border-radius: 5px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.saved-locations {
+  width: 25%;
+  border: 1px solid #404040;
+  border-radius: 5px;
+  margin: 0 auto;
+  text-align: center;
+}
+
 .search-bar {
   margin: 20px;
   text-align: center;

@@ -26,8 +26,14 @@ export default class SearchBar extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    $.get('/weather', {
-      location: this.state.location
+    $.get({
+      url : '/weather',
+      data : {
+        location: this.state.location
+      },
+      beforeSend: function( xhr ) {
+        xhr.setRequestHeader( "Authorization", 'Bearer ' + localStorage.token );
+      }
     })
     .done((data) => {
       this.props.passData(data);

@@ -62,28 +62,9 @@ function loginUser( req, res, next ) {
     })
 }
 
-function updatePassword (req, res, next) {
-  const currentPassword = req.body.currentPass
-  const newPassword = req.body.newPass
-  db.one("SELECT * FROM users WHERE user_id=($1)", [req.user.user_id])
-    .then((data)=>{
-      if (bcrypt.compareSync(currentPassword, data.password_digest)) {
-        createSecure(data.username, newPassword, updateUser)
-        function updateUser(username, hash) {
-          db.none("UPDATE users SET password_digest=($1) WHERE user_id=($2) ", [ hash, req.user.user_id ])
-        }
-        res.rows = 'success';
-        next();
-      } else {
-        res.rows = 'error';
-        next();
-      }
-    })
-}
-
-function deleteUser ( req,res,next ) {
-  db.none('DELETE FROM users WHERE user_id=($1)', [req.user.user_id])
-  .then ( () => {
+function saveLocation(req, res, next) {
+  db.none('INSERT INTO location(user_id, zip) VALUES($1, $2)', [req.user.user_id, req.body.zip])
+  .then (()=>{
     next();
   })
   .catch((error) => {
@@ -91,7 +72,21 @@ function deleteUser ( req,res,next ) {
   })
 }
 
+function grabLocation(req, res, next) {
+  db.any('SELECT zip FROM location WHERE user_id=($1)', [req.user.user_id])
+  .then((data) => {
+    res.rows = data;
+    console.log(res.rows);
+    next();
+  })
+  .catch(() => {
+    res.rows = 'error';
+    console.log(res.rows);
+    next();
+  })
+}
+
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;
-module.exports.updatePassword = updatePassword;
-module.exports.deleteUser = deleteUser;
+module.exports.saveLocation = saveLocation;
+module.exports.grabLocation = grabLocation;

@@ -5,9 +5,14 @@ const bodyParser  = require( 'body-parser' );
 const db          = require( '../db/pgp.js' );
 let data = '';
 
+weather.get('/savedlocations', db.grabLocation, (req, res) => {res.send(res.rows)})
+
 weather.route('/')
   .get(searchWeather, (req,res) => {
-    res.send(data)
+    res.send(data);
+  })
+  .post(db.saveLocation, (req, res) => {
+    res.send(data);
   })
 
 function searchWeather(req, res, next) {

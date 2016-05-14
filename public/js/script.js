@@ -16,6 +16,7 @@ class App extends Component {
   }
 
   render() {
+    browserHistory.push('/home');
     return (
       <h1>
         Hello World!
