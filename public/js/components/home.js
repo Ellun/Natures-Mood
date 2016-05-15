@@ -23,7 +23,7 @@ export default class Home extends Component {
     .done((data) => {
       let array = [];
       data.map((location) => {
-        array.push(location.zip);
+        array.push(location.full_location);
       })
       this.setState({locations:array});
     })

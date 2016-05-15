@@ -30,7 +30,8 @@ export default class WeatherList extends Component {
     $.post({
       url: '/weather',
       data : {
-        zip: this.props.weather.current_observation.display_location.zip
+        zip: this.props.weather.current_observation.display_location.zip,
+        fullLocation: this.props.weather.current_observation.display_location.full
       },
       beforeSend: function( xhr ) {
         xhr.setRequestHeader( "Authorization", 'Bearer ' + localStorage.token );

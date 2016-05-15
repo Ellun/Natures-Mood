@@ -11,5 +11,6 @@ CREATE TABLE users (
 CREATE TABLE location (
   location_id SERIAL UNIQUE PRIMARY KEY,
   user_id INT REFERENCES users ON DELETE CASCADE,
-  zip INT
+  zip INT,
+  full_location VARCHAR(255)
 );

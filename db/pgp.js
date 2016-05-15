@@ -63,7 +63,7 @@ function loginUser( req, res, next ) {
 }
 
 function saveLocation(req, res, next) {
-  db.none('INSERT INTO location(user_id, zip) VALUES($1, $2)', [req.user.user_id, req.body.zip])
+  db.none('INSERT INTO location(user_id, zip, full_location) VALUES($1, $2, $3)', [req.user.user_id, req.body.zip, req.body.fullLocation])
   .then (()=>{
     next();
   })
@@ -73,7 +73,7 @@ function saveLocation(req, res, next) {
 }
 
 function grabLocation(req, res, next) {
-  db.any('SELECT zip FROM location WHERE user_id=($1)', [req.user.user_id])
+  db.any('SELECT full_location FROM location WHERE user_id=($1)', [req.user.user_id])
   .then((data) => {
     res.rows = data;
     console.log(res.rows);
