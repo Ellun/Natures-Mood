@@ -5,7 +5,7 @@ const request     = require('request');
 const weather     = express.Router();
 const bodyParser  = require( 'body-parser' );
 const db          = require( '../db/pgp.js' );
-let data = '';
+var data = '';
 
 weather.get('/savedlocations', db.grabLocation, (req, res) => {res.send(res.rows)})
 weather.put('/update', db.updateLocation, (req, res) => {res.send(res.rows)})
