@@ -1,4 +1,4 @@
-# sunny-day
+# Natures-Mood
 Check daily weather based on location
 
 ### Technologies Used
