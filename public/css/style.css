@@ -4,6 +4,12 @@
   color: #404040;
 }
 
+.logout {
+  position: absolute;
+  right: 1%;
+  top: 1%;
+}
+
 .search-location {
   width: 75%;
   border: 1px solid #404040;

@@ -30,11 +30,18 @@ export default class Home extends Component {
 
     return (
       <div>
+        <button className="logout" onClick={this.handleLogout.bind(this)}>Logout</button>
         <SearchBar passData={this.handleData.bind(this)}/>
         <WeatherList saved={this.saved.bind(this)} error={this.state.error} weather={this.state.weather}/>
         <div className="location-items">{locationItems}</div>
       </div>
     )
+  }
+
+  handleLogout(event) {
+    event.preventDefault();
+    delete localStorage.token;
+    browserHistory.push('/login');
   }
 
   handleData(data) {
