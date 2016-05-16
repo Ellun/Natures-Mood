@@ -13,7 +13,7 @@ export default class SearchBar extends Component {
     return (
       <form className="search-bar" onSubmit={this.handleSubmit.bind(this)}>
         <input
-        placeholder="zipcode"
+        placeholder="City,State, zip code"
         value={this.state.location}
         onChange={event => this.onInputchange(event.target.value)}/>
       </form>

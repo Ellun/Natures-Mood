@@ -8,16 +8,23 @@
   width: 75%;
   border: 1px solid #404040;
   border-radius: 5px;
-  margin: 0 auto;
+  margin: 10px auto;
   text-align: center;
 }
 
 .saved-locations {
-  width: 25%;
+  width: 35%;
   border: 1px solid #404040;
   border-radius: 5px;
+  text-align: center;
+  margin: 10px;
+  display: inline-block;
+}
+
+.location-items {
   margin: 0 auto;
   text-align: center;
+  width: 75%;
 }
 
 .search-bar {
@@ -36,7 +43,7 @@
   border: 1px solid #404040;
   border-radius: 5px;
   width: 50%;
-  margin: 20% auto;
+  margin: 10% auto;
 }
 
 .login-form input, .signup-form input {

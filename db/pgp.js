@@ -63,20 +63,20 @@ function loginUser( req, res, next ) {
 }
 
 function saveLocation(req, res, next) {
-  db.none('INSERT INTO location(user_id, zip, full_location) VALUES($1, $2, $3)', [req.user.user_id, req.body.zip, req.body.fullLocation])
+  db.none('INSERT INTO location(user_id, zip, full_location, weather, temperature, time_added) VALUES($1, $2, $3, $4, $5, $6)', [req.user.user_id, req.body.zip, req.body.fullLocation, req.body.weather, req.body.temperature, req.body.time_added])
   .then (()=>{
     next();
   })
   .catch((error) => {
-    console.log(error)
+    res.rows = "error";
+    next();
   })
 }
 
 function grabLocation(req, res, next) {
-  db.any('SELECT full_location FROM location WHERE user_id=($1)', [req.user.user_id])
+  db.any('SELECT * FROM location WHERE user_id=($1)', [req.user.user_id])
   .then((data) => {
     res.rows = data;
-    console.log(res.rows);
     next();
   })
   .catch(() => {
@@ -86,7 +86,29 @@ function grabLocation(req, res, next) {
   })
 }
 
+
+function updateLocation (req, res, next) {
+  db.many("UPDATE location SET weather=($1), temperature=($2), time_added=($3) WHERE user_id=($4) and zip=($5) returning weather, temperature ", [req.body.weather , req.body.temperature, req.body.time_updated, req.user.user_id, req.body.location])
+  .then((data) => {
+    res.rows = data
+    next();
+  })
+  .catch((error) => {
+    console.log('ERROR: ', error);
+    next();
+  })
+}
+
+function deleteLocation (req, res, next) {
+  db.none("DELETE FROM location WHERE user_id=($1) and zip=($2)", [req.user.user_id, req.body.zip])
+  .then(() => {
+    next();
+  })
+}
+
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;
 module.exports.saveLocation = saveLocation;
 module.exports.grabLocation = grabLocation;
+module.exports.updateLocation = updateLocation;
+module.exports.deleteLocation = deleteLocation;

@@ -20,6 +20,7 @@ export default class WeatherList extends Component {
       return (
         <div className="search-location">
           <h3>Search for a location!</h3>
+          <h4>{this.props.error}</h4>
         </div>
       )
     }
@@ -27,18 +28,22 @@ export default class WeatherList extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    let time_added = $.now();
     $.post({
       url: '/weather',
       data : {
         zip: this.props.weather.current_observation.display_location.zip,
-        fullLocation: this.props.weather.current_observation.display_location.full
+        fullLocation: this.props.weather.current_observation.display_location.full,
+        weather: this.props.weather.current_observation.weather,
+        temperature: this.props.weather.current_observation.temperature_string,
+        time_added: time_added
       },
       beforeSend: function( xhr ) {
         xhr.setRequestHeader( "Authorization", 'Bearer ' + localStorage.token );
       }
     })
     .done((data) => {
-      console.log('update rendering');
+      this.props.saved(data);
     })
   }
 }

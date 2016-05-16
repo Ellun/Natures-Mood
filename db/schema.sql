@@ -11,6 +11,9 @@ CREATE TABLE users (
 CREATE TABLE location (
   location_id SERIAL UNIQUE PRIMARY KEY,
   user_id INT REFERENCES users ON DELETE CASCADE,
-  zip INT,
-  full_location VARCHAR(255)
+  zip INT UNIQUE,
+  full_location VARCHAR(255),
+  weather VARCHAR(255),
+  temperature VARCHAR(255),
+  time_added VARCHAR(255)
 );
