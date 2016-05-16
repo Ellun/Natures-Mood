@@ -5,13 +5,17 @@ export default class WeatherListItem extends Component {
   render() {
     return (
       <form className="saved-locations" onSubmit={this.handleSubmit.bind(this)}>
-        Location: {this.props.location}
+        <h3><strong>{this.props.location}</strong></h3>
+        <div className="update-time">{this.props.observation_time}</div>
+        <strong>Weather:</strong> {this.props.weather}
         <br />
-        Weather: {this.props.weather}
+        <strong>Temperature:</strong> {this.props.temperature}
         <br />
-        Temperature: {this.props.temperature}
+        <strong>Humidity:</strong> {this.props.humidity}
+        <br/>
+        <strong>Hourly Precipitation:</strong> {this.props.precipitation}
         <br />
-        <button type="submit">Delete</button>
+        <div className="delete"><button type="submit">Delete</button></div>
       </form>
     )
   }

@@ -7,11 +7,15 @@ export default class WeatherList extends Component {
       let details = this.props.weather.current_observation;
       return (
         <form className="search-location" onSubmit={this.handleSubmit.bind(this)}>
-          Location: {details.observation_location.full}
+          <h3>{details.observation_location.full}</h3>
+          <div className="update-time">{details.observation_time}</div>
+          <strong>Weather:</strong> {details.weather}
           <br />
-          Weather: {details.weather}
+          <strong>Temperature:</strong> {details.temperature_string}
           <br />
-          Temperature: {details.temperature_string}
+          <strong>Humidity:</strong> {details.relative_humidity}
+          <br/>
+          <strong>Hourly Precipitation:</strong> {details.precip_1hr_string}
           <br />
           <button className="save" type="submit">Save Location</button>
         </form>
@@ -36,6 +40,9 @@ export default class WeatherList extends Component {
         fullLocation: this.props.weather.current_observation.display_location.full,
         weather: this.props.weather.current_observation.weather,
         temperature: this.props.weather.current_observation.temperature_string,
+        humidity: this.props.weather.current_observation.relative_humidity,
+        precipitation: this.props.weather.current_observation.precip_1hr_string,
+        last_updated: this.props.weather.current_observation.observation_time,
         time_added: time_added
       },
       beforeSend: function( xhr ) {
