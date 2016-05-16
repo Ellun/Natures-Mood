@@ -24,7 +24,7 @@ export default class Home extends Component {
 
     const locationItems = this.state.locations.map((location) => {
       return (
-        <WeatherListItem update={this.update.bind(this)} location={location.location} weather={location.weather} zip={location.zip} temperature={location.temperature} key={location.location + location.weather}/>
+        <WeatherListItem update={this.update.bind(this)} humidity={location.relative_humidity} precipitation={location.precip_1hr_string} location={location.location} weather={location.weather} zip={location.zip} observation_time={location.observation_time} temperature={location.temperature} key={location.location + location.weather}/>
       )
     })
 
@@ -91,6 +91,9 @@ export default class Home extends Component {
               data : {
                 weather : data.current_observation.weather,
                 temperature : data.current_observation.temperature_string,
+                humidity: data.current_observation.relative_humidity,
+                precipitation: data.current_observation.precip_1hr_string,
+                last_updated: data.current_observation.observation_time,
                 location : location.zip,
                 time_updated : currentTime
               },
@@ -103,7 +106,10 @@ export default class Home extends Component {
                 location: location.full_location,
                 zip: location.zip,
                 weather: data.weather,
-                temperature: data.temperature
+                temperature: data.temperature,
+                relative_humidity: data.relative_humidity,
+                precip_1hr_string: data.precip_1hr_string,
+                observation_time: data.observation_time
               });
             })
           })
@@ -112,7 +118,10 @@ export default class Home extends Component {
             location: location.full_location,
             zip: location.zip,
             weather: location.weather,
-            temperature: location.temperature
+            temperature: location.temperature,
+            relative_humidity: location.relative_humidity,
+            precip_1hr_string: location.precip_1hr_string,
+            observation_time: location.observation_time
           });
         }
       })
