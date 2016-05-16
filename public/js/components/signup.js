@@ -20,7 +20,7 @@ export default class Signup extends Component {
     }
     return (
       <form className="signup-form" onSubmit={this.handleSubmit.bind(this)}>
-        <h1>Sunny Day</h1>
+        <h1>Natures Mood</h1>
         <input
           value={this.state.username}
           onChange={event => this.onUsernameChange(event.target.value)}
