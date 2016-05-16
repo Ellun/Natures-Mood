@@ -20,8 +20,9 @@ weather.route('/')
   })
 
 function searchWeather(req, res, next) {
-  request(`http://api.wunderground.com/api/${process.env.API_KEY}/conditions/q/${req.query.location}.json`, function(er, response, body) {
+  request(`http://api.wunderground.com/api/${process.env.API_KEY}/conditions/q/${req.query.location}.json`, function(err, response, body) {
     data = JSON.parse(body);
+    console.log(data);
     next();
   })
 }
