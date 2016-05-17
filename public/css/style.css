@@ -6,11 +6,10 @@
 }
 
 body {
-  background-color: #00BFFF;
+  background-image: url(../img/clouds.jpg);
 }
 
 .logout {
-  background-color: #EFFBFB;
   position: absolute;
   right: 1%;
   top: 1%;
@@ -26,13 +25,14 @@ body {
 }
 
 .saved-locations {
-  background-image: url('../img/neutral_cloud.png');
-  background-size: cover;
-  height: 200px;
+  background-color: #EFFBFB;
+  border: 1px solid #404040;
+  border-radius: 5px;
   min-width: 300px;
   display: inline-block;
   margin-top: 5px;
   font-size: 12px;
+  padding: 10px 0;
 }
 
 .update-time {
