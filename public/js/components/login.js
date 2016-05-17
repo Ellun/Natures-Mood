@@ -19,7 +19,7 @@ export default class Login extends Component {
     }
     return (
       <form className="login-form" onSubmit={this.handleSubmit.bind(this)}>
-        <h1>NATURES MOOD</h1>
+        <h1>NATURE'S MOOD</h1>
         <input
           value={this.state.username}
           onChange={event => this.onUsernameChange(event.target.value)}

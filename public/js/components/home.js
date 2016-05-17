@@ -31,7 +31,7 @@ export default class Home extends Component {
     return (
       <div>
         <div className="navbar">
-          <h1 className="title">NATURES MOOD</h1>
+          <h1 className="title">NATURE'S MOOD</h1>
           <button className="logout" onClick={this.handleLogout.bind(this)}>Logout</button>
           <SearchBar passData={this.handleData.bind(this)}/>
         </div>
