@@ -23,7 +23,6 @@ export default class WeatherList extends Component {
     } else {
       return (
         <div className="search-location">
-          <h3>Natures Mood!</h3>
           <h4>{this.props.error}</h4>
         </div>
       )

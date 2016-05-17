@@ -30,8 +30,12 @@ export default class Home extends Component {
 
     return (
       <div>
-        <button className="logout" onClick={this.handleLogout.bind(this)}>Logout</button>
-        <SearchBar passData={this.handleData.bind(this)}/>
+        <div className="navbar">
+          <button className="logout" onClick={this.handleLogout.bind(this)}>Logout</button>
+          <SearchBar passData={this.handleData.bind(this)}/>
+        </div>
+        <br/>
+        <h1 className="title">Natures Mood</h1>
         <WeatherList saved={this.saved.bind(this)} error={this.state.error} weather={this.state.weather}/>
         <div className="location-items">{locationItems}</div>
       </div>
