@@ -5,8 +5,14 @@
   color: #404040;
 }
 
+html, body {
+    min-height: 100%;
+}
 body {
   background-image: url(../img/clouds.jpg);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: cover;
 }
 
 .logout {
@@ -64,6 +70,8 @@ body {
   border-radius: 5px;
   width: 50%;
   margin: 10% auto;
+  opacity: 0.85;
+  padding: 30px;
 }
 
 .login-form input, .signup-form input {

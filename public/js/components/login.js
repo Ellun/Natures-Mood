@@ -33,6 +33,7 @@ export default class Login extends Component {
           <br />
         <button type="submit">Submit</button>
         <h5>{this.state.error}</h5>
+        <br/>
         <h4>Need an account?</h4>
         <Link to="/signup">Signup</Link>
       </form>

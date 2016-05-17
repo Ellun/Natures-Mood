@@ -40,6 +40,7 @@ export default class Signup extends Component {
           <br />
         <button type="submit">Submit</button>
         <h5>{this.state.error}</h5>
+        <br/>
         <h4>Already have an account?</h4>
         <Link to="/login">Login</Link>
       </form>
