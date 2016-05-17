@@ -20,11 +20,15 @@ export default class WeatherList extends Component {
           <button className="save" type="submit">Save Location</button>
         </form>
       )
-    } else {
+    } else if (this.props.error){
       return (
         <div className="search-location">
           <h4>{this.props.error}</h4>
         </div>
+      )
+    } else {
+      return (
+        <div></div>
       )
     }
   }
