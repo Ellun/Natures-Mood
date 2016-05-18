@@ -63,7 +63,7 @@ function loginUser( req, res, next ) {
 }
 
 function saveLocation(req, res, next) {
-  db.none('INSERT INTO location(user_id, zip, full_location, weather, temperature, relative_humidity, precip_1hr_string, observation_time, time_added) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)', [req.user.user_id, req.body.zip, req.body.fullLocation, req.body.weather, req.body.temperature, req.body.humidity, req.body.precipitation, req.body.last_updated, req.body.time_added])
+  db.none('INSERT INTO location(user_id, zip, full_location, weather, temperature, relative_humidity, precip_1hr_string, observation_time, time_added, icon) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)', [req.user.user_id, req.body.zip, req.body.fullLocation, req.body.weather, req.body.temperature, req.body.humidity, req.body.precipitation, req.body.last_updated, req.body.time_added, req.body.icon])
   .then (()=>{
     next();
   })
@@ -88,7 +88,7 @@ function grabLocation(req, res, next) {
 
 
 function updateLocation (req, res, next) {
-  db.many("UPDATE location SET weather=($1), temperature=($2), relative_humidity=($3), precip_1hr_string=($4), observation_time=($5), time_added=($6) WHERE user_id=($7) and zip=($8) returning weather, temperature, relative_humidity, precip_1hr_string, observation_time ", [req.body.weather , req.body.temperature, req.body.humidity, req.body.precipitation, req.body.last_updated, req.body.time_updated, req.user.user_id, req.body.location])
+  db.many("UPDATE location SET weather=($1), temperature=($2), relative_humidity=($3), precip_1hr_string=($4), observation_time=($5), time_added=($6), icon=($7) WHERE user_id=($8) and zip=($9) returning weather, temperature, relative_humidity, precip_1hr_string, observation_time, icon ", [req.body.weather , req.body.temperature, req.body.humidity, req.body.precipitation, req.body.last_updated, req.body.time_updated, req.body.icon, req.user.user_id, req.body.location])
   .then((data) => {
     res.rows = data
     next();

@@ -9,7 +9,7 @@ html, body {
     min-height: 100%;
 }
 body {
-  background-image: url(../img/clouds.jpg);
+  background-image: url("../img/clouds.jpg");
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: cover;
@@ -55,6 +55,12 @@ body {
   margin-top: 5px;
   font-size: 12px;
   padding: 10px 0;
+}
+
+.weather-icon {
+  margin: 10px auto;
+  width: 50px;
+  height: 50px;
 }
 
 .update-time {

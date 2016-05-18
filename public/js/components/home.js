@@ -24,14 +24,14 @@ export default class Home extends Component {
 
     const locationItems = this.state.locations.map((location) => {
       return (
-        <WeatherListItem update={this.update.bind(this)} humidity={location.relative_humidity} precipitation={location.precip_1hr_string} location={location.location} weather={location.weather} zip={location.zip} observation_time={location.observation_time} temperature={location.temperature} key={location.location + location.weather}/>
+        <WeatherListItem icon={location.icon} update={this.update.bind(this)} humidity={location.relative_humidity} precipitation={location.precip_1hr_string} location={location.location} weather={location.weather} zip={location.zip} observation_time={location.observation_time} temperature={location.temperature} key={location.location + location.weather}/>
       )
     })
 
     return (
       <div>
         <div className="navbar">
-          <h1 className="title">NATURE'S MOOD</h1>
+          <h1 className="title">NATURES MOOD</h1>
           <button className="logout" onClick={this.handleLogout.bind(this)}>Logout</button>
           <SearchBar passData={this.handleData.bind(this)}/>
         </div>
@@ -99,7 +99,8 @@ export default class Home extends Component {
                 precipitation: data.current_observation.precip_1hr_string,
                 last_updated: data.current_observation.observation_time,
                 location : location.zip,
-                time_updated : currentTime
+                time_updated : currentTime,
+                icon : data.current_observation.icon_url
               },
               beforeSend: function( xhr ) {
                 xhr.setRequestHeader( "Authorization", 'Bearer ' + localStorage.token );
@@ -113,7 +114,8 @@ export default class Home extends Component {
                 temperature: data.temperature,
                 relative_humidity: data.relative_humidity,
                 precip_1hr_string: data.precip_1hr_string,
-                observation_time: data.observation_time
+                observation_time: data.observation_time,
+                icon: data.icon
               });
             })
           })
@@ -125,7 +127,8 @@ export default class Home extends Component {
             temperature: location.temperature,
             relative_humidity: location.relative_humidity,
             precip_1hr_string: location.precip_1hr_string,
-            observation_time: location.observation_time
+            observation_time: location.observation_time,
+            icon: location.icon
           });
         }
       })

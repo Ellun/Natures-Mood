@@ -46,7 +46,8 @@ export default class WeatherList extends Component {
         humidity: this.props.weather.current_observation.relative_humidity,
         precipitation: this.props.weather.current_observation.precip_1hr_string,
         last_updated: this.props.weather.current_observation.observation_time,
-        time_added: time_added
+        time_added: time_added,
+        icon: this.props.weather.current_observation.icon_url
       },
       beforeSend: function( xhr ) {
         xhr.setRequestHeader( "Authorization", 'Bearer ' + localStorage.token );

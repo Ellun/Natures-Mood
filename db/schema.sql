@@ -18,5 +18,6 @@ CREATE TABLE location (
   relative_humidity VARCHAR(255),
   precip_1hr_string VARCHAR(255),
   observation_time VARCHAR(255),
-  time_added VARCHAR(255)
+  time_added VARCHAR(255),
+  icon VARCHAR(255)
 );
