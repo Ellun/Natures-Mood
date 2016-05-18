@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 
 export default class WeatherList extends Component {
   render() {
-    if (this.props.weather) {
+    if (this.props.weather) { // if there is weather data render
       let details = this.props.weather.current_observation;
       return (
         <form className="search-location" onSubmit={this.handleSubmit.bind(this)}>
@@ -20,13 +20,13 @@ export default class WeatherList extends Component {
           <button className="save" type="submit">Save Location</button>
         </form>
       )
-    } else if (this.props.error){
+    } else if (this.props.error){ // if the weather data was invalid
       return (
         <div className="search-location">
           <h4>{this.props.error}</h4>
         </div>
       )
-    } else {
+    } else { // in nothing was searched for
       return (
         <div></div>
       )

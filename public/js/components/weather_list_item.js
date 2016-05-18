@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 export default class WeatherListItem extends Component {
   render() {
     let style = {
-      backgroundImage : `url(${this.props.icon})`
+      backgroundImage : `url(${this.props.icon})` // sets weather icon
     }
 
     return (
@@ -26,7 +26,7 @@ export default class WeatherListItem extends Component {
     )
   }
 
-  handleSubmit(event) {
+  handleSubmit(event) { // on delete, remove saved weather from database
     event.preventDefault();
     $.ajax({
       url : '/weather/delete',

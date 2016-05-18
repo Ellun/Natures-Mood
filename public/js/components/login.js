@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import $ from 'jquery'; // requires jQuery for AJAX request
 import React, {Component} from 'react';
 import {browserHistory, Link} from 'react-router';
 
@@ -6,16 +6,16 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      username: '',
-      password: '',
-      error: ''
+    this.state = { // sets initial states
+      username : '',
+      password : '',
+      error : ''
     }
   }
 
   render() {
-    if (localStorage.token) {
-      browserHistory.push('/home');
+    if (localStorage.token) { // checks if logged in
+      browserHistory.push('/home'); // redirects to home if logged in
     }
     return (
       <form className="login-form" onSubmit={this.handleSubmit.bind(this)}>
@@ -41,11 +41,11 @@ export default class Login extends Component {
   }
 
   onUsernameChange(username) {
-    this.setState({username});
+    this.setState({username}); // updates username state
   }
 
   onPasswordChange(password) {
-    this.setState({password});
+    this.setState({password}); // updates password state
   }
 
   handleSubmit(event) {
@@ -55,20 +55,16 @@ export default class Login extends Component {
       this.setState({error:error})
     }
     $.post('/users/login', { // AJAX post request to users/login route
-      username: this.state.username,
-      password: this.state.password
+      username : this.state.username,
+      password : this.state.password
     })
     .done((data) => {
       if (data.agent == 'error') { // if username/password doesn't match
         this.setState({error:error})
       } else { // if login is successful
-        localStorage.token = data.token;
+        localStorage.token = data.token; // saves token to local storage
         browserHistory.push('/home');
       }
     })
   }
-}
-
-Login.contextTypes = {
-  router: React.PropTypes.object
 }

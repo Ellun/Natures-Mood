@@ -6,17 +6,17 @@ export default class Signup extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      username: '',
-      password: '',
-      confirmPassword: '',
-      error: ''
+    this.state = { // sets initial states
+      username : '',
+      password : '',
+      confirmPassword : '',
+      error : ''
     }
   }
 
   render() {
     if (localStorage.token) {
-      browserHistory.push('/home');
+      browserHistory.push('/home'); // redirects to home if already logged in
     }
     return (
       <form className="signup-form" onSubmit={this.handleSubmit.bind(this)}>
@@ -48,41 +48,41 @@ export default class Signup extends Component {
   }
 
   onUsernameChange(username) {
-    this.setState({username});
+    this.setState({username}); // updates username state
   }
 
   onPasswordChange(password) {
-    this.setState({password});
+    this.setState({password}); // updates password state
   }
 
   onConfirmPasswordChange(confirmPassword) {
-    this.setState({confirmPassword});
+    this.setState({confirmPassword}); // updates confirms password state
   }
 
-  handleSubmit(event) {
+  handleSubmit(event) { // runs error checks
     event.preventDefault();
     if (this.state.username.length < 1){
-      this.setState({error: 'Enter Username'});
+      this.setState({error : 'Enter Username'});
     } else if (this.state.password != this.state.confirmPassword) {
-      this.setState({error: 'Passwords do not match!'});
+      this.setState({error : 'Passwords do not match!'});
     } else if (this.state.password.length < 8) {
-      this.setState({error: 'Password must be at least 8 characters'});
+      this.setState({error : 'Password must be at least 8 characters'});
     } else {
-      $.post('/users/signup', {
-        username: this.state.username,
-        password: this.state.password
+      $.post('/users/signup', { // stores new user
+        username : this.state.username,
+        password : this.state.password
       })
       .done((data) => {
         if (data.agent == 'error') {
-          this.setState({error: 'That user already exists'})
+          this.setState({error : 'That user already exists'})
         } else {
-          $.post('/users/login', {
-            username: this.state.username,
-            password: this.state.password
+          $.post('/users/login', { // logins
+            username : this.state.username,
+            password : this.state.password
           })
           .done((data) => {
-            localStorage.token = data.token;
-            browserHistory.push('/home');
+            localStorage.token = data.token; // creates token
+            browserHistory.push('/home'); // redirects to home
           })
         }
       })

@@ -6,7 +6,7 @@ export default class SearchBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {location: ''};
+    this.state = {location : ''};
   }
 
   render() {
@@ -21,21 +21,21 @@ export default class SearchBar extends Component {
   }
 
   onInputchange(location) {
-    this.setState({location});
+    this.setState({location}); // updates location state
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    $.get({
+    $.get({ // grabs searched location weather data
       url : '/weather',
       data : {
-        location: this.state.location
+        location : this.state.location
       },
-      beforeSend: function( xhr ) {
+      beforeSend : function( xhr ) { // allows for user info access
         xhr.setRequestHeader( "Authorization", 'Bearer ' + localStorage.token );
       }
     })
-    .done((data) => {
+    .done((data) => { // sends gathered data to parent
       this.props.passData(data);
     })
   }

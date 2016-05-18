@@ -1,11 +1,10 @@
 'use strict'
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
+import React, {Component} from 'react'; // requires react
+import ReactDOM from 'react-dom'; // requires reactDOM
 import {Router, Route, Navigation, Link, browserHistory, IndexRoute} from 'react-router';
-import Signup from './components/signup';
-import Login from './components/login';
-import Home from './components/home';
-const API_KEY = process.env.API_KEY;
+import Signup from './components/signup'; // links to Signup component
+import Login from './components/login'; // links to Login component
+import Home from './components/home'; // links to Home component
 
 class App extends Component {
   constructor(props) {
@@ -17,12 +16,7 @@ class App extends Component {
   }
 
   render() {
-    browserHistory.push('/home');
-    return (
-      <h1>
-        Hello World!
-      </h1>
-    )
+    browserHistory.push('/home'); // directs to home page
   }
 }
 
