@@ -1,4 +1,4 @@
-# Natures-Mood
+# Nature's Mood
 Allows users to search for locations within the United States and view its weather. Users are able to save and track desired locations.
 
 ### Technologies Used
