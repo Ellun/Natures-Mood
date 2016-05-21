@@ -22,6 +22,7 @@ class App extends Component {
 
 const routes = (
   <Router history={browserHistory} >
+    <IndexRoute component={Login} />
     <Route path="/" component={App} />
     <Route path="/signup" component={Signup} />
     <Route path="/login" component={Login} />
