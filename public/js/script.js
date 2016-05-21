@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   render() {
-    browserHistory.push('/home'); // directs to home page
+    browserHistory.push('/login'); // directs to home page
   }
 }
 
